@@ -1,0 +1,2 @@
+platform :ios, '7.0'
+pod 'VSPagingScrollView', :path => '~/Documents/Projects/VSPagingScrollView/VSPagingScrollView.podspec'
