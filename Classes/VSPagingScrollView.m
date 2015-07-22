@@ -100,16 +100,37 @@
     _pagesCount = pagesCount;
     self.contentSize = CGSizeMake(self.frame.size.width*pagesCount, self.frame.size.height);
     
+    [self.pageViews removeAllObjects];
+    
     for (NSInteger i=0; i<pagesCount; i++)
         [self.pageViews addObject:[NSNull null]];
-    
-    [self loadVisiblePages];
 }
 
 - (NSInteger)currentPage
 {
     CGFloat pageWidth = self.frame.size.width;
     return (NSInteger)floor((self.contentOffset.x*2 + pageWidth) / (pageWidth*2.0));
+}
+
+- (void)setCurrentPage:(NSInteger)currentPage
+{
+    [self setCurrentPage:currentPage animated:NO];
+}
+
+- (void)setCurrentPage:(NSInteger)currentPage animated:(BOOL)animated
+{
+    if (currentPage >= 0 &&
+        currentPage < self.pagesCount)
+        [self setContentOffset:CGPointMake(self.frame.size.width*currentPage, 0) animated:animated];
+}
+
+- (void)reloadData
+{
+    [self.pageViews enumerateObjectsUsingBlock:^(id pageView, NSUInteger idx, BOOL *stop) {
+        [self purgePage:idx];
+    }];
+    
+    [self loadVisiblePages];
 }
 
 #pragma mark - UIScrollViewDelegate interface

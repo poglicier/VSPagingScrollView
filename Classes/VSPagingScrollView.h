@@ -5,8 +5,11 @@
 @interface VSPagingScrollView : UIScrollView
 
 @property (assign, nonatomic) NSInteger pagesCount;
-@property (assign, nonatomic, readonly) NSInteger currentPage;
+@property (assign, nonatomic) NSInteger currentPage;
 @property (weak, nonatomic) id<VSPagingScrollViewDelegate> pagingDelegate;
+
+- (void)setCurrentPage:(NSInteger)currentPage animated:(BOOL)animated;
+- (void)reloadData;
 
 @end
 

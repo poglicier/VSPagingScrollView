@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "VSPagingScrollView"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "VSPagingScrollView is a UIScrollView with paging enabled based on Ray Wenderlich tutorial"
   s.homepage     = "https://github.com/poglicier/VSPagingScrollView"
   s.license               = { :type => 'MIT', :file => 'LICENSE' }
