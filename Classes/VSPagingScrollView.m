@@ -122,6 +122,10 @@
     if (currentPage >= 0 &&
         currentPage < self.pagesCount)
         [self setContentOffset:CGPointMake(self.frame.size.width*currentPage, 0) animated:animated];
+    
+    if (currentPage == 0 &&
+        self.contentOffset.x == 0)
+        [self loadVisiblePages];
 }
 
 - (void)reloadData

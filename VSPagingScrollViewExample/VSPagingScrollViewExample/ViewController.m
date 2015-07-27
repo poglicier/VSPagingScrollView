@@ -24,6 +24,7 @@
     
     self.scrollView.pagingDelegate = self;
     self.scrollView.pagesCount = self.texts.count;
+    self.scrollView.currentPage = 0;
 }
 
 #pragma mark - Private interface
