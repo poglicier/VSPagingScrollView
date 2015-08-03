@@ -35,6 +35,7 @@
     self.pagingEnabled = YES;
     self.delegate = self;
     self.pageViews = [NSMutableArray new];
+    self.numberOfCachedPages = 1;
 }
 
 - (void)loadVisiblePages
@@ -45,8 +46,8 @@
     else if (page > self.pagesCount)
         page = self.pagesCount;
     
-    NSInteger firstPage = page - 1;
-    NSInteger lastPage = page + 1;
+    NSInteger firstPage = page - self.numberOfCachedPages;
+    NSInteger lastPage = page + self.numberOfCachedPages;
     
     for (NSInteger i=0; i<firstPage; i++)
         [self purgePage:i];
@@ -95,32 +96,36 @@
 
 #pragma mark - Public interface
 
-- (void)setPagesCount:(NSInteger)pagesCount
+- (void)setPagesCount:(NSUInteger)pagesCount
 {
     _pagesCount = pagesCount;
     self.contentSize = CGSizeMake(self.frame.size.width*pagesCount, self.frame.size.height);
     
     [self.pageViews removeAllObjects];
     
-    for (NSInteger i=0; i<pagesCount; i++)
+    for (NSUInteger i=0; i<pagesCount; i++)
         [self.pageViews addObject:[NSNull null]];
 }
 
-- (NSInteger)currentPage
+- (NSUInteger)currentPage
 {
     CGFloat pageWidth = self.frame.size.width;
-    return (NSInteger)floor((self.contentOffset.x*2 + pageWidth) / (pageWidth*2.0));
+    double page = floor((self.contentOffset.x*2 + pageWidth) / (pageWidth*2.0));
+    
+    if (page < 0)
+        return 0;
+    else
+        return (NSUInteger)page;
 }
 
-- (void)setCurrentPage:(NSInteger)currentPage
+- (void)setCurrentPage:(NSUInteger)currentPage
 {
     [self setCurrentPage:currentPage animated:NO];
 }
 
-- (void)setCurrentPage:(NSInteger)currentPage animated:(BOOL)animated
+- (void)setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated
 {
-    if (currentPage >= 0 &&
-        currentPage < self.pagesCount)
+    if (currentPage < self.pagesCount)
         [self setContentOffset:CGPointMake(self.frame.size.width*currentPage, 0) animated:animated];
     
     if (currentPage == 0 &&

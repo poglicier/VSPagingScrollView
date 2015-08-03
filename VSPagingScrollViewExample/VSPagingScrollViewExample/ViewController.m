@@ -22,6 +22,7 @@
 {
     [super viewDidAppear:animated];
     
+    self.scrollView.numberOfCachedPages = 2;
     self.scrollView.pagingDelegate = self;
     self.scrollView.pagesCount = self.texts.count;
     self.scrollView.currentPage = 0;
@@ -38,7 +39,7 @@
 
 #pragma mark - VSPagingScrollViewDelegate interface
 
-- (UIView*)viewForPagingScrollView:(VSPagingScrollView *)scrollView onPage:(NSInteger)page
+- (UIView*)viewForPagingScrollView:(VSPagingScrollView *)scrollView onPage:(NSUInteger)page
 {
     UIView* pageView = [[UIView alloc] initWithFrame:self.scrollView.bounds];
     pageView.backgroundColor = [UIColor colorWithRed:page/1./self.texts.count green:0 blue:1 alpha:1];
