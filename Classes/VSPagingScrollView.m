@@ -100,7 +100,8 @@
 {
     _pagesCount = pagesCount;
     self.contentSize = CGSizeMake(self.frame.size.width*pagesCount, self.frame.size.height);
-    
+
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.pageViews removeAllObjects];
     
     for (NSUInteger i=0; i<pagesCount; i++)
