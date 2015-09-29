@@ -112,6 +112,9 @@
     
     for (NSUInteger i=0; i<pagesCount; i++)
         [self.pageViews addObject:[NSNull null]];
+    
+    if (self.currentPage >= _pagesCount)
+        self.currentPage = pagesCount - 1;
 }
 
 - (NSUInteger)currentPage
