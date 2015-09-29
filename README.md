@@ -30,4 +30,4 @@ Just add `VSPagingScrollView` to your view and set `VSPagingScrollViewDelegate`.
 
 ## License
 
-AFNetworking is released under the MIT license. See LICENSE for details.
+VSPagingScrollView is released under the MIT license. See LICENSE for details.
