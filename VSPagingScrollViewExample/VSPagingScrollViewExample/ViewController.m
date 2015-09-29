@@ -45,7 +45,7 @@
     pageView.backgroundColor = [UIColor colorWithRed:page/1./self.texts.count green:0 blue:1 alpha:1];
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake((pageView.frame.size.width - 100)/2,(pageView.frame.size.height - 40)/2 , 100, 40)];
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+    label.font = [UIFont systemFontOfSize:20];
     label.textColor = [UIColor whiteColor];
     label.text = self.texts[page];
     [pageView addSubview:label];
