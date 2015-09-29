@@ -1,6 +1,6 @@
 #import "VSPagingScrollView.h"
 
-@interface VSPagingScrollView () <UIScrollViewDelegate>
+@interface VSPagingScrollView ()
 
 @property (strong, nonatomic) NSMutableArray* pageViews;
 
@@ -33,7 +33,6 @@
 - (void)initialize
 {
     self.pagingEnabled = YES;
-    self.delegate = self;
     self.pageViews = [NSMutableArray new];
     self.numberOfCachedPages = 1;
 }
@@ -51,8 +50,8 @@
     
     for (NSInteger i=0; i<firstPage; i++)
         [self purgePage:i];
-
-
+    
+    
     CGFloat maxHeight = 0;
     for (NSInteger i = firstPage; i <= lastPage; i++)
     {
@@ -62,9 +61,9 @@
             maxHeight = view.frame.size.height;
         }
     }
-
+    
     self.contentSize = CGSizeMake(self.frame.size.width * _pagesCount, maxHeight);
-
+    
     for (NSInteger i=lastPage+1; i<self.pageViews.count; i++)
         [self purgePage:i];
 }
@@ -101,12 +100,17 @@
     }
 }
 
+- (void)layoutSubviews
+{
+    [self loadVisiblePages];
+}
+
 #pragma mark - Public interface
 
 - (void)setPagesCount:(NSUInteger)pagesCount
 {
     _pagesCount = pagesCount;
-
+    
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.pageViews removeAllObjects];
     
@@ -149,13 +153,6 @@
         [self purgePage:idx];
     }];
     
-    [self loadVisiblePages];
-}
-
-#pragma mark - UIScrollViewDelegate interface
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
     [self loadVisiblePages];
 }
 
