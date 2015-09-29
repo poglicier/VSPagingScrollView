@@ -51,34 +51,41 @@
     
     for (NSInteger i=0; i<firstPage; i++)
         [self purgePage:i];
-    
-    for (NSInteger i=firstPage; i<=lastPage; i++)
-        [self loadPage:i];
-    
+
+
+    CGFloat maxHeight = 0;
+    for (NSInteger i = firstPage; i <= lastPage; i++)
+    {
+        UIView *view = [self loadPage:i];
+        if (view.frame.size.height > maxHeight)
+        {
+            maxHeight = view.frame.size.height;
+        }
+    }
+
+    self.contentSize = CGSizeMake(self.frame.size.width * _pagesCount, maxHeight);
+
     for (NSInteger i=lastPage+1; i<self.pageViews.count; i++)
         [self purgePage:i];
 }
 
-- (void)loadPage:(NSInteger)page
+- (UIView *)loadPage:(NSInteger)page
 {
     if (page < 0 || page >= self.pageViews.count)
-        return;
+        return nil;
     
-    UIView *pageView = [self.pageViews objectAtIndex:page];
+    UIView *pageView = self.pageViews[page];
     if ((NSNull*)pageView == [NSNull null])
     {
-        CGRect frame = self.bounds;
-        frame.origin.x = frame.size.width * page;
-        frame.origin.y = 0;
-        
         UIView* newPageView = [self.pagingDelegate viewForPagingScrollView:self onPage:page];
         CGRect pageViewFrame = newPageView.frame;
         pageViewFrame.origin.x = page*self.frame.size.width;
         newPageView.frame = pageViewFrame;
         
         [self addSubview:newPageView];
-        [self.pageViews replaceObjectAtIndex:page withObject:newPageView];
+        self.pageViews[page] = newPageView;
     }
+    return _pageViews[page];
 }
 
 - (void)purgePage:(NSInteger)page
@@ -99,7 +106,6 @@
 - (void)setPagesCount:(NSUInteger)pagesCount
 {
     _pagesCount = pagesCount;
-    self.contentSize = CGSizeMake(self.frame.size.width*pagesCount, self.frame.size.height);
 
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.pageViews removeAllObjects];
