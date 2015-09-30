@@ -77,6 +77,7 @@
     if ((NSNull*)pageView == [NSNull null])
     {
         UIView* newPageView = [self.pagingDelegate viewForPagingScrollView:self onPage:page];
+        newPageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         CGRect pageViewFrame = newPageView.frame;
         pageViewFrame.origin.x = page*self.frame.size.width;
         newPageView.frame = pageViewFrame;
