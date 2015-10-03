@@ -37,21 +37,19 @@
     self.numberOfCachedPages = 1;
 }
 
-- (void)loadVisiblePages
+- (void)loadVisiblePagesWithCurrent:(NSInteger)page
 {
-    NSInteger page = self.currentPage;
     if (page < 0)
         page = 0;
     else if (page > self.pagesCount)
         page = self.pagesCount;
-    
+
     NSInteger firstPage = page - self.numberOfCachedPages;
     NSInteger lastPage = page + self.numberOfCachedPages;
-    
+
     for (NSInteger i=0; i<firstPage; i++)
         [self purgePage:i];
-    
-    
+
     CGFloat maxHeight = 0;
     for (NSInteger i = firstPage; i <= lastPage; i++)
     {
@@ -61,11 +59,16 @@
             maxHeight = view.frame.size.height;
         }
     }
-    
+
     self.contentSize = CGSizeMake(self.frame.size.width * _pagesCount, maxHeight);
-    
+
     for (NSInteger i=lastPage+1; i<self.pageViews.count; i++)
         [self purgePage:i];
+}
+
+- (void)loadVisiblePages
+{
+    [self loadVisiblePagesWithCurrent:self.currentPage];
 }
 
 - (UIView *)loadPage:(NSInteger)page
@@ -126,7 +129,7 @@
 {
     CGFloat pageWidth = self.frame.size.width;
     double page = floor((self.contentOffset.x*2 + pageWidth) / (pageWidth*2.0));
-    
+
     if (page < 0)
         return 0;
     else
@@ -140,9 +143,12 @@
 
 - (void)setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated
 {
+    [self loadVisiblePagesWithCurrent:currentPage];
     if (currentPage < self.pagesCount)
-        [self setContentOffset:CGPointMake(self.frame.size.width*currentPage, 0) animated:animated];
-    
+    {
+        [self setContentOffset:CGPointMake(self.frame.size.width * currentPage, 0) animated:animated];
+    }
+
     if (currentPage == 0 &&
         self.contentOffset.x == 0)
         [self loadVisiblePages];
