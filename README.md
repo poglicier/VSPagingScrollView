@@ -17,10 +17,13 @@ pod "VSPagingScrollView"
 Just add `VSPagingScrollView` to your view and set `VSPagingScrollViewDelegate`. This delegate has one method to get a view for each page. For example, this snippet creates a scroll view with colored pages:
 
 ```objective-c
+- (void)viewDidLoad {
+    self.pagingScrollView.pagingDelegate = self;
+    self.pagingScrollView.pagesCount = 10;
+}
 #pragma mark - VSPagingScrollViewDelegate interface
 
-- (UIView*)viewForPagingScrollView:(VSPagingScrollView *)scrollView onPage:(NSUInteger)page
-{
+- (UIView*)viewForPagingScrollView:(VSPagingScrollView *)scrollView onPage:(NSUInteger)page {
     UIView* pageView = [UIView new];
     pageView.backgroundColor = [UIColor colorWithRed:page/1./self.texts.count green:0 blue:1 alpha:1];
     
