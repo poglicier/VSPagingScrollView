@@ -5,7 +5,6 @@
 @interface VSPagingScrollView : UIScrollView
 
 @property (assign, nonatomic) NSUInteger pagesCount;
-@property (assign, nonatomic) NSUInteger currentPage;
 @property (assign, nonatomic) NSUInteger numberOfCachedPages;
 
 @property (weak, nonatomic) id<VSPagingScrollViewDelegate> pagingDelegate;
