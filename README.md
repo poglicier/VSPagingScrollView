@@ -1,6 +1,6 @@
 # VSPagingScrollView
 
-The main idea was took from [Ray Wenderlich tutorial] (http://www.raywenderlich.com/10518/how-to-use-uiscrollview-to-scroll-and-zoom-content), then upgraded.
+The main idea was took from [Ray Wenderlich tutorial] (http://www.raywenderlich.com/10518/how-to-use-uiscrollview-to-scroll-and-zoom-content), then upgraded to autolayout.
 ### Installation with CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries in your projects.
@@ -21,7 +21,7 @@ Just add `VSPagingScrollView` to your view and set `VSPagingScrollViewDelegate`.
 
 - (UIView*)viewForPagingScrollView:(VSPagingScrollView *)scrollView onPage:(NSUInteger)page
 {
-    UIView* pageView = [[UIView alloc] initWithFrame:self.scrollView.bounds];
+    UIView* pageView = [UIView new];
     pageView.backgroundColor = [UIColor colorWithRed:page/1./self.texts.count green:0 blue:1 alpha:1];
     
     return pageView;
