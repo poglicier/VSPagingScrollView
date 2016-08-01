@@ -290,8 +290,9 @@
     if (currentPage < self.pagesCount) {
         [UIView animateWithDuration:0.3
                          animations:^{
-        self.contentOffset = CGPointMake(self.frame.size.width*currentPage, 0);
+                             self.contentOffset = CGPointMake(self.frame.size.width*currentPage, 0);
                          } completion:^(BOOL finished) {
+                             self.contentOffset = CGPointMake(self.frame.size.width*currentPage, 0);
                              self.currentPage = currentPage;
                          }];
     } else if (currentPage > self.pagesCount - 1) {
