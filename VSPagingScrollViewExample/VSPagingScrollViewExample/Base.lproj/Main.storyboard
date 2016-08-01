@@ -22,16 +22,23 @@
                                 <rect key="frame" x="0.0" y="8" width="320" height="552"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.72549019609999998" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="xMH-ny-1HU">
+                                <rect key="frame" x="0.0" y="521" width="320" height="37"/>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="KEy-Vs-vab" secondAttribute="trailing" id="2x9-t8-cpU"/>
                             <constraint firstItem="KEy-Vs-vab" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="8" id="IfD-36-Gng"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KEy-Vs-vab" secondAttribute="bottom" constant="8" id="JRj-Ce-L0U"/>
+                            <constraint firstItem="xMH-ny-1HU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="OM9-9h-smh"/>
                             <constraint firstItem="KEy-Vs-vab" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="anP-E4-cyJ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xMH-ny-1HU" secondAttribute="bottom" constant="10" id="mC4-Ed-bY9"/>
+                            <constraint firstAttribute="trailing" secondItem="xMH-ny-1HU" secondAttribute="trailing" id="xId-GB-FnV"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="pageControl" destination="xMH-ny-1HU" id="0P0-ga-1wJ"/>
                         <outlet property="scrollView" destination="KEy-Vs-vab" id="oqR-TK-CKe"/>
                     </connections>
                 </viewController>

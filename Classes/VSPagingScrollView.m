@@ -276,6 +276,15 @@
     }
 }
 
+- (void)setCurrentPage:(NSUInteger)currentPage {
+    if (_currentPage != currentPage) {
+        _currentPage = currentPage;
+        if ([self.pagingDelegate respondsToSelector:@selector(viewForPagingScrollViewDidChangePage:)]) {
+            [self.pagingDelegate viewForPagingScrollViewDidChangePage:self];
+        }
+    }
+}
+
 - (void)setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated
 {
     if (currentPage < self.pagesCount) {

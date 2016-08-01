@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet VSPagingScrollView *scrollView;
 @property (strong, nonatomic) NSArray* texts;
+@property (strong, nonatomic) IBOutlet UIPageControl* pageControl;
 
 @end
 
@@ -66,6 +67,15 @@
                                                           constant:0]];
     
     return pageView;
+}
+
+- (void)viewForPagingScrollViewDidChangePage:(VSPagingScrollView *)scrollView {
+    if (self.scrollView.currentPage == 0)
+        self.pageControl.currentPage = 0;
+    else if (self.scrollView.currentPage == self.scrollView.pagesCount - 1)
+        self.pageControl.currentPage = self.pageControl.numberOfPages - 1;
+    else
+        self.pageControl.currentPage = 1;
 }
 
 @end

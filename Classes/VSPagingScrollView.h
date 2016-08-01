@@ -19,4 +19,7 @@
 
 - (UIView*)viewForPagingScrollView:(VSPagingScrollView*)scrollView onPage:(NSUInteger)page;
 
+@optional
+- (void)viewForPagingScrollViewDidChangePage:(VSPagingScrollView*)scrollView;
+
 @end
