@@ -288,8 +288,12 @@
 - (void)setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated
 {
     if (currentPage < self.pagesCount) {
-        [self setContentOffset:CGPointMake(self.frame.size.width*currentPage, 0) animated:animated];
-        self.currentPage = currentPage;
+        [UIView animateWithDuration:0.3
+                         animations:^{
+        self.contentOffset = CGPointMake(self.frame.size.width*currentPage, 0);
+                         } completion:^(BOOL finished) {
+                             self.currentPage = currentPage;
+                         }];
     } else if (currentPage > self.pagesCount - 1) {
         self.currentPage = self.pagesCount - 1;
     }
