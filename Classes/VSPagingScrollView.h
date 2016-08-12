@@ -12,6 +12,7 @@
 
 - (void)setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated;
 - (void)reloadData;
+- (UIView*)viewOnPage:(NSUInteger)page;
 
 @end
 

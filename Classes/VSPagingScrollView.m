@@ -288,7 +288,7 @@
 - (void)setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated
 {
     if (currentPage < self.pagesCount) {
-        [UIView animateWithDuration:0.3
+        [UIView animateWithDuration:animated ? 0.3 : 0
                          animations:^{
                              self.contentOffset = CGPointMake(self.frame.size.width*currentPage, 0);
                          } completion:^(BOOL finished) {
@@ -307,6 +307,17 @@
     }];
     
     [self loadVisiblePages];
+}
+
+- (UIView*)viewOnPage:(NSUInteger)page {
+    UIView* res;
+    if (page < self.pagesCount) {
+        UIView* pageView = self.pageViews[page];
+        if (![pageView isKindOfClass:[EmptyView class]]) {
+            res = pageView;
+        }
+    }
+    return res;
 }
 
 @end
