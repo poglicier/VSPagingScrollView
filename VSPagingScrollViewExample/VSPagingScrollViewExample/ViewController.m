@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet VSPagingScrollView *scrollView;
 @property (strong, nonatomic) NSArray* texts;
+@property (strong, nonatomic) IBOutlet UIPageControl* pageControl;
 
 @end
 
@@ -25,7 +26,7 @@
     self.scrollView.numberOfCachedPages = 2;
     self.scrollView.pagingDelegate = self;
     self.scrollView.pagesCount = self.texts.count;
-    self.scrollView.currentPage = 0;
+    [self.scrollView setCurrentPage:2 animated:NO];
 }
 
 #pragma mark - Private interface
@@ -43,14 +44,38 @@
 {
     UIView* pageView = [[UIView alloc] initWithFrame:self.scrollView.bounds];
     pageView.backgroundColor = [UIColor colorWithRed:page/1./self.texts.count green:0 blue:1 alpha:1];
-    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake((pageView.frame.size.width - 100)/2,(pageView.frame.size.height - 40)/2 , 100, 40)];
-    label.textAlignment = NSTextAlignmentCenter;
+    UILabel* label = [UILabel new];
+    label.translatesAutoresizingMaskIntoConstraints = NO;
     label.font = [UIFont systemFontOfSize:20];
     label.textColor = [UIColor whiteColor];
     label.text = self.texts[page];
     [pageView addSubview:label];
     
+    [pageView addConstraint:[NSLayoutConstraint constraintWithItem:label
+                                                         attribute:NSLayoutAttributeCenterX
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:pageView
+                                                         attribute:NSLayoutAttributeCenterX
+                                                        multiplier:1
+                                                          constant:0]];
+    [pageView addConstraint:[NSLayoutConstraint constraintWithItem:label
+                                                         attribute:NSLayoutAttributeCenterY
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:pageView
+                                                         attribute:NSLayoutAttributeCenterY
+                                                        multiplier:1
+                                                          constant:0]];
+    
     return pageView;
+}
+
+- (void)viewForPagingScrollViewDidChangePage:(VSPagingScrollView *)scrollView {
+    if (self.scrollView.currentPage == 0)
+        self.pageControl.currentPage = 0;
+    else if (self.scrollView.currentPage == self.scrollView.pagesCount - 1)
+        self.pageControl.currentPage = self.pageControl.numberOfPages - 1;
+    else
+        self.pageControl.currentPage = 1;
 }
 
 @end
