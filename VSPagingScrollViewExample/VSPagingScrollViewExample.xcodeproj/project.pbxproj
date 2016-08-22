@@ -159,6 +159,7 @@
 				FCE73E151B5E355100707D42 /* Resources */,
 				D806C2914BDBFDAE8B1811F2 /* 📦 Embed Pods Frameworks */,
 				E9426B824497F93904ECF3A0 /* 📦 Copy Pods Resources */,
+				388D72A68E8014CACE4C6302 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -216,6 +217,8 @@
 			mainGroup = FCE73E0E1B5E355100707D42;
 			productRefGroup = FCE73E181B5E355100707D42 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+			);
 			projectRoot = "";
 			targets = (
 				FCE73E161B5E355100707D42 /* VSPagingScrollViewExample */,
@@ -259,6 +262,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		388D72A68E8014CACE4C6302 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VSPagingScrollViewExample/Pods-VSPagingScrollViewExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D806C2914BDBFDAE8B1811F2 /* 📦 Embed Pods Frameworks */ = {
@@ -465,6 +483,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "poglicier.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VSPagingScrollViewExample.app/VSPagingScrollViewExample";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 			};
 			name = Debug;
 		};
@@ -478,6 +497,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "poglicier.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VSPagingScrollViewExample.app/VSPagingScrollViewExample";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 			};
 			name = Release;
 		};
