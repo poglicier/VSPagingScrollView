@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "VSPagingScrollView.h"
 
-@interface VSPagingScrollViewExampleTests : XCTestCase
+
+static NSInteger const kPagesCount = 3;
+
+@interface VSPagingScrollViewExampleTests : XCTestCase {
+    VSPagingScrollView *scrollView;
+}
 
 @end
 
@@ -17,24 +23,22 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    scrollView = [[VSPagingScrollView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    scrollView.pagesCount = kPagesCount;
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+- (void)testCurrentPageSetting {
+    NSInteger currentPage = 1;
+    [scrollView setCurrentPage:currentPage animated:YES];
+    XCTAssertEqual(scrollView.currentPage, currentPage, @"Set current page");
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testPagesCount {
+    XCTAssertEqual(scrollView.pagesCount, kPagesCount, @"Pages count");
 }
 
 @end
