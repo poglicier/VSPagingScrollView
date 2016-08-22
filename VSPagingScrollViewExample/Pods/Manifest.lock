@@ -1,16 +1,14 @@
 PODS:
-  - VSPagingScrollView (1.0.1)
+  - VSPagingScrollView (1.0.5)
 
 DEPENDENCIES:
-  - VSPagingScrollView (from `~/Documents/Projects/VSPagingScrollView/VSPagingScrollView.podspec`)
+  - VSPagingScrollView (from `../VSPagingScrollView.podspec`)
 
 EXTERNAL SOURCES:
   VSPagingScrollView:
-    :path: ~/Documents/Projects/VSPagingScrollView/VSPagingScrollView.podspec
+    :path: ../VSPagingScrollView.podspec
 
 SPEC CHECKSUMS:
-  VSPagingScrollView: f35b1bfe5871d196b7d271756d0b6b91ef7b0970
+  VSPagingScrollView: fb4203db88e228042c65e0d05dd8921653f4415b
 
-PODFILE CHECKSUM: d14e81689e24c9c4c678e536a71eac2fb0a0c134
-
-COCOAPODS: 1.0.0
+COCOAPODS: 0.39.0

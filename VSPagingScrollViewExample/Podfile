@@ -1,4 +1,4 @@
 platform :ios, '7.0'
 target 'VSPagingScrollViewExample' do
-    pod 'VSPagingScrollView', :path => '~/Documents/Projects/VSPagingScrollView/VSPagingScrollView.podspec'
+    pod 'VSPagingScrollView', :path => '../VSPagingScrollView.podspec'
 end
