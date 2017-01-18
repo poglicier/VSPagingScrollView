@@ -19,9 +19,9 @@
 
 @implementation ViewController
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-    [super viewDidAppear:animated];
+    [super viewDidLoad];
     
     self.scrollView.numberOfCachedPages = 2;
     self.scrollView.pagingDelegate = self;

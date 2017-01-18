@@ -288,13 +288,18 @@
 - (void)setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated
 {
     if (currentPage < self.pagesCount) {
-        [UIView animateWithDuration:animated ? 0.3 : 0
-                         animations:^{
-                             self.contentOffset = CGPointMake(self.frame.size.width*currentPage, 0);
-                         } completion:^(BOOL finished) {
-                             self.contentOffset = CGPointMake(self.frame.size.width*currentPage, 0);
-                             self.currentPage = currentPage;
-                         }];
+        if (animated) {
+            [UIView animateWithDuration:0.3
+                             animations:^{
+                                 self.contentOffset = CGPointMake(self.frame.size.width*currentPage, 0);
+                             } completion:^(BOOL finished) {
+                                 self.contentOffset = CGPointMake(self.frame.size.width*currentPage, 0);
+                                 self.currentPage = currentPage;
+                             }];
+        } else {
+            self.contentOffset = CGPointMake(self.frame.size.width*currentPage, 0);
+            self.currentPage = currentPage;
+        }
     } else if (currentPage > self.pagesCount - 1) {
         self.currentPage = self.pagesCount - 1;
     }
